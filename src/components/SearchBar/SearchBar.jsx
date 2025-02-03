@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-function SearchBar() {
+import { Link } from "react-router-dom";
+
+function SearchBar({ players }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
   return (
     <div>
-      <input type="text" />
-      <button>Search</button>
+      <input
+        type="text"
+        id="search"
+        name="search"
+        value={searchTerm}
+        onChange={handleChange}
+        required
+      />
+      <Link to={`/SearchedPuppies/${searchTerm}`}>
+        <button>Search</button>
+      </Link>
     </div>
   );
 }
